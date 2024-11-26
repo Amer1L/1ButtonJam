@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class invent : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    private string[] _invetoryArray = new string[5];
+
     void Start()
     {
-        
+        for(int i = 0;  i < _invetoryArray.Length; i++)
+        {
+            _invetoryArray[i] = " ";
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            string inventory = "";
+            for (int i = 0; i < _invetoryArray.Length; i++)
+            {
+                inventory = inventory + "|" + _invetoryArray[i];
+            }
+            Debug.Log(inventory);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for(int i = 0; i < _invetoryArray.Length; i++)
+            {
+                if (_invetoryArray[i] == " ")
+                {
+                    _invetoryArray[i] = collision.gameObject.name;
+                    i = _invetoryArray.Length;
+                    Destroy(collision.gameObject);
+                }
+            }
+        }
     }
 }

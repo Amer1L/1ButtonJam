@@ -32,7 +32,8 @@ public class ItemSpawner : MonoBehaviour
         {
             if(i  == rand)
             {
-                Instantiate(_itemArray[i], transform);
+                GameObject item = Instantiate(_itemArray[i], transform);
+                item.name = _itemArray[i].name;
             }
         }
     }
