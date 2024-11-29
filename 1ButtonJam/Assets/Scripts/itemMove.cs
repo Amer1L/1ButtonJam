@@ -10,6 +10,9 @@ public class itemMove : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(_speed * Time.deltaTime, 0, 0);
+        if (StartAndFinish.IsPlay)
+        {
+            transform.Translate(_speed * Time.deltaTime, 0, 0);
+        }
     }
 }

@@ -5,41 +5,51 @@ using UnityEngine;
 public class invent : MonoBehaviour
 {
 
-    private string[] _invetoryArray = new string[5];
+    public string[] _invetoryArray = new string[12];
 
     void Start()
     {
         for(int i = 0;  i < _invetoryArray.Length; i++)
         {
-            _invetoryArray[i] = " ";
+            _invetoryArray[i] = "empty";
         }
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            string inventory = "";
-            for (int i = 0; i < _invetoryArray.Length; i++)
-            {
-                inventory = inventory + "|" + _invetoryArray[i];
-            }
-            Debug.Log(inventory);
-        }
+        
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+    }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (StartAndFinish.IsPlay)
         {
-            for(int i = 0; i < _invetoryArray.Length; i++)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (_invetoryArray[i] == " ")
+                for (int i = 0; i < _invetoryArray.Length; i++)
                 {
-                    _invetoryArray[i] = collision.gameObject.name;
-                    i = _invetoryArray.Length;
-                    Destroy(collision.gameObject);
+                    if (_invetoryArray[i] == "empty")
+                    {
+                        _invetoryArray[i] = collision.gameObject.name;
+                        i = _invetoryArray.Length;
+                        Destroy(collision.gameObject);
+                        if(collision.gameObject.name == "bug")
+                        {
+                            for (int j = 0; j < _invetoryArray.Length; j++)
+                            {
+                                if (_invetoryArray[j] != "empty" && _invetoryArray[j] != "bug" && _invetoryArray[j] != "trash")
+                                {
+                                    _invetoryArray[j] = "trash";
+                                    j = _invetoryArray.Length;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

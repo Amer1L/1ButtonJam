@@ -16,8 +16,11 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        _BGpos += _speed * Time.deltaTime;
-        _BGpos = Mathf.Repeat(_BGpos, _BGsize);
-        _BGtransform.position = new Vector3(_BGpos, 0, 5);
+        if (StartAndFinish.IsPlay)
+        {
+            _BGpos += _speed * Time.deltaTime;
+            _BGpos = Mathf.Repeat(_BGpos, _BGsize);
+            _BGtransform.position = new Vector3(_BGpos, 0, 5);
+        }
     }
 }
