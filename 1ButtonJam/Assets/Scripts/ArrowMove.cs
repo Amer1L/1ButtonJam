@@ -44,15 +44,16 @@ public class ArrowMove : MonoBehaviour
                         }
                     }
                 }
-                _delay = constDelay;
             }
+            _delay = constDelay;
             _arrow.position = _point2.position;
         }
         if (_delay <= 0)
         {
             _moveA = false;
-            _delay = constDelay;
         }
+
+
         if (_moveA)
         {
             _arrow.position = Vector3.Lerp(_point1.position, _point2.position, _delay);

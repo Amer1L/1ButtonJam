@@ -22,7 +22,7 @@ public class ItemSpawner : MonoBehaviour
             }
             if (_spawnDelay <= 0)
             {
-                _spawnDelay = _spawnDelayConst;
+                _spawnDelay = Random.Range(_spawnDelayConst - 0.1f, _spawnDelayConst + 0.2f);
                 ChangeRandItem();
             }
         }

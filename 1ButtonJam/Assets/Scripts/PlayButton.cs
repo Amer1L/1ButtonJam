@@ -36,8 +36,8 @@ public class PlayButton : MonoBehaviour
                 _thisWindow.SetActive(false);
                 StartAndFinish.IsPlay = true;
             }
-            _moveA = false;
             _delay = constDelay;
+            _moveA = false;
         }
     }
 }

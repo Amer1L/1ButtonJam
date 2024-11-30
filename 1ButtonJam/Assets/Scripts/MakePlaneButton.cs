@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemToTrash : MonoBehaviour
+public class MakePlaneButton : MonoBehaviour
 {
-    [SerializeField] private Transform _arrow;
     [SerializeField] private invent invent;
+    [SerializeField] private NeedParts[] _partsArray;
+    [SerializeField] private Transform _arrow;
     private bool _moveA = false;
     private float _delay = 1f;
     private float constDelay = 1f;
@@ -35,11 +36,22 @@ public class ItemToTrash : MonoBehaviour
             {
                 for (int i = 0; i < invent._invetoryArray.Length; i++)
                 {
-                    invent._invetoryArray[i] = "empty";
+                    for (int j = 0; j < _partsArray.Length; j++)
+                    {
+                        for (int p = 0; p < _partsArray[j]._namePartsArray.Length; p++)
+                        {
+                            if (invent._invetoryArray[i] == _partsArray[j]._namePartsArray[p])
+                            {
+                                invent._invetoryArray[i] = "empty";
+                                _partsArray[j]._namePartsArray[p] = "empty";
+                            }
+                        }
+                    }
                 }
             }
             _moveA = false;
             _delay = constDelay;
+
         }
     }
 }
