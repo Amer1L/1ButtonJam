@@ -9,7 +9,7 @@ public class BugMove : MonoBehaviour
     void Start()
     {
         _speed = Random.Range(-2f, -5f);
-        if(_speed > -3)
+        if (_speed > -3)
         {
             transform.Rotate(0, 180, 0);
             _speed = _speed * -1;
@@ -20,8 +20,7 @@ public class BugMove : MonoBehaviour
     {
         if (StartAndFinish.IsPlay)
         {
-                transform.Translate(_speed * Time.deltaTime, 0, 0);
-
+            transform.Translate(_speed * Time.deltaTime, 0, 0);
         }
     }
 }

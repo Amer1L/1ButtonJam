@@ -5,6 +5,7 @@ public class PlayButton : MonoBehaviour
     [SerializeField] private Transform _finish;
     [SerializeField] private GameObject _thisWindow;
     [SerializeField] private Transform _arrow;
+    [SerializeField] private AudioSource _source;
     private bool _moveA = false;
     private float _delay = 1f;
     private float constDelay = 1f;
@@ -32,7 +33,8 @@ public class PlayButton : MonoBehaviour
         {
             if (_arrow.position.y == transform.position.y)
             {
-                _finish.Translate(45, 0, 0);
+                _source.Play();
+                _finish.Translate(70, 0, 0);
                 _thisWindow.SetActive(false);
                 StartAndFinish.IsPlay = true;
             }

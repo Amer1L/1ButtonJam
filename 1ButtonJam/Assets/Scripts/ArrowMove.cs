@@ -9,9 +9,12 @@ public class ArrowMove : MonoBehaviour
     [SerializeField] private Transform _point2;
     [SerializeField] private Transform _arrow;
     [SerializeField] private Transform[] _buttonArray;
+    [SerializeField] private AudioSource _trans;
+    [SerializeField] private AudioSource _choose;
     private bool _moveA = false;
     private float _delay = 1f;
     private float constDelay = 1f;
+    private bool _playChoose = true;
 
 
     void Update()
@@ -19,6 +22,7 @@ public class ArrowMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _moveA = true;
+            _playChoose = true;
         }
         if (_moveA && _delay > 0)
         {
@@ -42,6 +46,7 @@ public class ArrowMove : MonoBehaviour
                             transform.position = new Vector3(transform.position.x, _buttonArray[0].position.y, transform.position.z);
                             _moveA = false;
                         }
+                        _trans.Play();
                     }
                 }
             }
@@ -51,6 +56,11 @@ public class ArrowMove : MonoBehaviour
         if (_delay <= 0)
         {
             _moveA = false;
+            if (_playChoose)
+            {
+                _choose.Play();
+                _playChoose = false;
+            }
         }
 
 

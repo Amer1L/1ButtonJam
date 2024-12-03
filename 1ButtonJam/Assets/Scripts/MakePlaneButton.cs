@@ -5,8 +5,9 @@ using UnityEngine;
 public class MakePlaneButton : MonoBehaviour
 {
     [SerializeField] private invent invent;
-    [SerializeField] private NeedParts[] _partsArray;
+    public NeedParts[] _partsArray;
     [SerializeField] private Transform _arrow;
+    [SerializeField] private AudioSource _source;
     private bool _moveA = false;
     private float _delay = 1f;
     private float constDelay = 1f;
@@ -34,19 +35,25 @@ public class MakePlaneButton : MonoBehaviour
         {
             if (_arrow.position.y == transform.position.y)
             {
+                bool play = false;
                 for (int i = 0; i < invent._invetoryArray.Length; i++)
                 {
                     for (int j = 0; j < _partsArray.Length; j++)
                     {
                         for (int p = 0; p < _partsArray[j]._namePartsArray.Length; p++)
                         {
-                            if (invent._invetoryArray[i] == _partsArray[j]._namePartsArray[p])
+                            if (invent._invetoryArray[i] == _partsArray[j]._namePartsArray[p] && invent._invetoryArray[i] != "empty")
                             {
+                                play = true;
                                 invent._invetoryArray[i] = "empty";
                                 _partsArray[j]._namePartsArray[p] = "empty";
                             }
                         }
                     }
+                }
+                if (play)
+                {
+                    _source.Play();
                 }
             }
             _moveA = false;

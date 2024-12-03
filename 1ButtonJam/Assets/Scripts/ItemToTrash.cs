@@ -6,6 +6,7 @@ public class ItemToTrash : MonoBehaviour
 {
     [SerializeField] private Transform _arrow;
     [SerializeField] private invent invent;
+    [SerializeField] private AudioSource _sorce;
     private bool _moveA = false;
     private float _delay = 1f;
     private float constDelay = 1f;
@@ -33,10 +34,20 @@ public class ItemToTrash : MonoBehaviour
         {
             if (_arrow.position.y == transform.position.y)
             {
+                bool play = false;
                 for (int i = 0; i < invent._invetoryArray.Length; i++)
                 {
+                    if(invent._invetoryArray[i] != "empty")
+                    {
+                        play = true;
+                    }
                     invent._invetoryArray[i] = "empty";
                 }
+                if (play)
+                {
+                    _sorce.Play();
+                }
+
             }
             _moveA = false;
             _delay = constDelay;

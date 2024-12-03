@@ -33,7 +33,7 @@ public class ItemSpawner : MonoBehaviour
         int rand = Random.Range(0, 5);
         for (int i = 0;  i < _itemArray.Length; i++)
         {
-            if(i  == rand)
+            if(i == rand)
             {
                 GameObject item = Instantiate(_itemArray[i], transform);
                 item.name = _itemArray[i].name;
